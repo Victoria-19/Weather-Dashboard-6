@@ -1,7 +1,7 @@
-var cityList =$("#ist");
+var cityList =$("#list"); 
 var cities = [];
-var key = "daa2a08da6f24590f5f16001b2834d99";
-
+var key = "daa2a08da6f24590f5f16001b2834d99"; // My api key
+// this function formats the day at the top
 function FormatDay(date){
     var date = new Date();
     console.log(date);
@@ -12,7 +12,7 @@ function FormatDay(date){
         (day<10 ? '0' : '') + day;
     return dayOutput;
 }
-
+// messed up somthing with local storage and am unsure how to fix it
 function storeCities(){
 
   localStorage.setItem("cities", JSON.stringify(cities));
@@ -47,7 +47,7 @@ function storeCities(){
   storeCities();
   renderCities();
   });
-
+// this will get the city and will display the temp outside at the top 
   function getResponseWeather(cityName){
     var queryURL = "https://api.openweathermap.org/data/2.5/weather?q=" +cityName+ "&appid=" + key; 
 
@@ -87,7 +87,7 @@ function storeCities(){
                 (month<10 ? '0' : '') + month + '/' +
                 (day<10 ? '0' : '') + day;
                 var Fivedayh4 = $("<h6>").text(dayOutput);
-                   
+                   // these are the little images used for the clouds and sun
                 var imgtag = $("<img>");
                  var skyconditions = response5day.list[i].weather[0].main;
                 if(skyconditions==="Clouds"){
@@ -97,7 +97,7 @@ function storeCities(){
                  }else if(skyconditions==="Rain"){
                         imgtag.attr("src", "https://img.icons8.com/color/48/null/intense-rain--v1.png")
                  }
-                    
+                    // the temps and other things on the 5day forecast api
                 var pTemperatureK = response5day.list[i].main.temp;
                  console.log(skyconditions);
                 var TempetureToNum = parseInt((pTemperatureK)* 9/5 - 459);
